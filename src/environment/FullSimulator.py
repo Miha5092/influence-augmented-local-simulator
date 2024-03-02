@@ -12,10 +12,7 @@ class FullSimulator:
         self.map = full_map
 
     def step(self, action: int) -> np.array:
-        if action == 1:
-            self.position = min(len(self.map), self.position + action)
-        else:
-            self.position = max(0, self.position + action)
+        self.position = max(0, min(len(self.map) - 1, self.position + action))
 
         start_index = self.position - 1
         end_index = self.position + 2
@@ -27,3 +24,5 @@ class FullSimulator:
             obs = np.pad(self.map[start_index:], (0, 3 - len(self.map[start_index:])), mode='constant', constant_values=-1)
         else:
             obs = self.map[start_index:end_index]
+
+        return obs
