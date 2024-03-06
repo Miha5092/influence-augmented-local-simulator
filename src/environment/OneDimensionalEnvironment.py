@@ -7,16 +7,16 @@ from src.predictors.RandomUniformPredictor import RandomUniformPredictor
 
 class OneDimensionalEnvironment:
 
-    def __init__(self, seed=42):
+    def __init__(self, map_size=10, seed=42):
         np.random.seed(seed)
 
         self.action_space = np.array([-1, 1])
         self.observation_space = [0, 1]
         self.observation_space_prob = np.array([0.8, 0.2])
 
-        self.position = np.random.choice(1, 1)[0]
+        self.map = np.random.choice(self.observation_space, size=map_size, p=self.observation_space_prob)
 
-        self.map = np.random.choice(self.observation_space, size=10, p=self.observation_space_prob)
+        self.position = np.random.choice(np.where(self.map == 0)[0])
 
     def obtain_initial_obs(self) -> np.array:
         start_index = self.position - 1

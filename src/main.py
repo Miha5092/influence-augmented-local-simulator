@@ -9,7 +9,9 @@ def main():
 
     # print(obs)
     print(obs)
-    obs = augmented_simulator.step(1)
+    obs = full_simulator.step(1)
+    print(obs)
+    obs = full_simulator.step(1)
     print(obs)
 
 

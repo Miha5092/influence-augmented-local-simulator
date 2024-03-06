@@ -18,7 +18,7 @@ class AugmentedSimulator:
     def step(self, action: int) -> np.array:
 
         # If the action would make the agent exit the world do not permit it
-        if self.position + action < 0:
+        if self.position + action < 0 or self.obs[]:
             return self.obs
         elif self.position + action >= self.map_shape[0]:
             return self.obs
