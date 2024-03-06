@@ -17,10 +17,12 @@ class AugmentedSimulator:
 
     def step(self, action: int) -> np.array:
 
-        # If the action would make the agent exit the world do not permit it
-        if self.position + action < 0 or self.obs[]:
+        # If the action would make the agent exit the world or step onto an object do not permit it
+        if self.position + action < 0:
             return self.obs
         elif self.position + action >= self.map_shape[0]:
+            return self.obs
+        elif self.obs[int(np.shape(self.obs)[0] / 2 + action)] == 1:
             return self.obs
 
         # Perform the action and predict

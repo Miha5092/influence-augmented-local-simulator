@@ -12,9 +12,11 @@ class FullSimulator:
         self.map = full_map
 
     def step(self, action: int) -> np.array:
-        if self.position + action >= len(self.map) or self.map[self.position + action] == 1:
+        if self.position + action >= len(self.map):
             self.position = self.position
-        elif self.position + action < 0 or self.map[self.position + action] == 1:
+        elif self.position + action < 0:
+            self.position = self.position
+        elif self.map[self.position + action] == 1:
             self.position = self.position
         else:
             self.position = self.position + action
