@@ -2,7 +2,7 @@ import numpy as np
 
 
 class FullSimulator:
-    def __init__(self, observation_space, action_space, starting_pos, full_map):
+    def __init__(self, observation_space, action_space, starting_pos, full_map, initial_obs):
         self.observation_space = observation_space
 
         self.action_space = action_space
@@ -10,14 +10,15 @@ class FullSimulator:
         self.position = starting_pos
 
         self.map = full_map
+        self.obs = initial_obs
 
     def step(self, action: int) -> np.array:
         if self.position + action >= len(self.map):
-            self.position = self.position
+            return self.obs
         elif self.position + action < 0:
-            self.position = self.position
+            return self.obs
         elif self.map[self.position + action] == 1:
-            self.position = self.position
+            return self.obs
         else:
             self.position = self.position + action
 

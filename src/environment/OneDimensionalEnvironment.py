@@ -34,10 +34,13 @@ class OneDimensionalEnvironment:
         return obs
 
     def create_full_simulator(self) -> tuple[FullSimulator, np.array]:
+        initial_obs = self.obtain_initial_obs()
+
         return (FullSimulator(observation_space=self.observation_space,
                               action_space=self.action_space,
                               starting_pos=self.position,
-                              full_map=self.map),
+                              full_map=self.map,
+                              initial_obs=initial_obs),
                 self.obtain_initial_obs())
 
     def create_augmented_simulator(self) -> tuple[AugmentedSimulator, np.array]:
