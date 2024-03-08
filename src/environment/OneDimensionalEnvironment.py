@@ -14,7 +14,13 @@ class OneDimensionalEnvironment:
         self.observation_space = [0, 1]
         self.observation_space_prob = np.array([0.8, 0.2])
 
-        self.map = np.random.choice(self.observation_space, size=map_size, p=self.observation_space_prob)
+        self.map = np.random.choice(self.observation_space, size=(map_size, 1), p=self.observation_space_prob)
+
+        walls = np.zeros((np.shape(self.map)[0], 2))
+        walls[0, 0] = 1
+        walls[map_size - 1, 1] = 1
+
+        self.map = np.concatenate((self.map, walls), axis=1)
 
         self.position = np.random.choice(np.where(self.map == 0)[0])
 
@@ -24,10 +30,11 @@ class OneDimensionalEnvironment:
 
         # Handle edge cases if start or end indices go out of bounds
         if start_index < 0:
-            obs = np.pad(self.map[:end_index], (3 - len(self.map[:end_index]), 0), mode='constant', constant_values=-1)
+            obs = np.pad(self.map[:end_index], (3 - len(self.map[:end_index]), 0), mode='constant',
+                         constant_values=np.array([-1, 0, 0]))
         elif end_index > len(self.map):
             obs = np.pad(self.map[start_index:], (0, 3 - len(self.map[start_index:])), mode='constant',
-                         constant_values=-1)
+                         constant_values=np.array([-1, 0, 0]))
         else:
             obs = self.map[start_index:end_index]
 
@@ -35,6 +42,7 @@ class OneDimensionalEnvironment:
 
     def create_full_simulator(self) -> tuple[FullSimulator, np.array]:
         initial_obs = self.obtain_initial_obs()
+        print(initial_obs)
 
         return (FullSimulator(observation_space=self.observation_space,
                               action_space=self.action_space,

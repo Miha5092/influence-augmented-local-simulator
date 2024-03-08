@@ -8,7 +8,7 @@ def main():
     augmented_simulator, obs = env.create_augmented_simulator()
 
     for _ in range(10):
-        print(augmented_simulator.step(np.random.choice([-1, 1])))
+        print(full_simulator.step(np.random.choice([-1, 1])))
 
 
 if __name__ == "__main__":

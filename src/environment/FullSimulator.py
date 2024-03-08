@@ -17,7 +17,7 @@ class FullSimulator:
             return self.obs
         elif self.position + action < 0:
             return self.obs
-        elif self.map[self.position + action] == 1:
+        elif self.map[self.position + action][0] == 1:
             return self.obs
         else:
             self.position = self.position + action
@@ -27,9 +27,11 @@ class FullSimulator:
 
         # Handle edge cases if start or end indices go out of bounds
         if start_index < 0:
-            obs = np.pad(self.map[:end_index], (3 - len(self.map[:end_index]), 0), mode='constant', constant_values=-1)
+            obs = np.pad(self.map[:end_index], (3 - len(self.map[:end_index]), 0), mode='constant',
+                         constant_values=np.array([-1, 0, 0]))
         elif end_index > len(self.map):
-            obs = np.pad(self.map[start_index:], (0, 3 - len(self.map[start_index:])), mode='constant', constant_values=-1)
+            obs = np.pad(self.map[start_index:], (0, 3 - len(self.map[start_index:])), mode='constant',
+                         constant_values=np.array([-1, 0, 0]))
         else:
             obs = self.map[start_index:end_index]
 
