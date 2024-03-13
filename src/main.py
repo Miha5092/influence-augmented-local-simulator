@@ -1,14 +1,11 @@
-from src.environment.OneDimensionalEnvironment import OneDimensionalEnvironment
-import numpy as np
+from src.environment.Environment import Environment
+
 
 def main():
-    env = OneDimensionalEnvironment(seed=43)
+    env = Environment()
+    env.reset()
 
-    full_simulator, obs = env.create_full_simulator()
-    augmented_simulator, obs = env.create_augmented_simulator()
-
-    for _ in range(10):
-        print(augmented_simulator.step(np.random.choice([-1, 1])))
+    print(env)
 
 
 if __name__ == "__main__":
