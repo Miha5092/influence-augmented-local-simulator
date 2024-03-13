@@ -1,0 +1,41 @@
+node0:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node0
+  initial_value: 1
+
+node1:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node1
+  initial_value: 0
+
+node2:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node2
+  initial_value: 0
+
+node3:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node3
+  initial_value: 0
+
+node4:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node4
+  initial_value: 1
+
+node5:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node5
+  initial_value: 0
+
+node6:
+  CPT: [[0, [0, 1]], [1, [1, 1]]]
+  parents:
+  - node6
+  initial_value: 1
