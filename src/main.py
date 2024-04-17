@@ -1,14 +1,12 @@
-from src.environment.OneDimensionalEnvironment import OneDimensionalEnvironment
-import numpy as np
+from src.one_dimensional.WaveWorld import WaveWorld
+
 
 def main():
-    env = OneDimensionalEnvironment(seed=43)
 
-    full_simulator, obs = env.create_full_simulator()
-    augmented_simulator, obs = env.create_augmented_simulator()
+    wave_world = WaveWorld(world_size=7, local_simulation=False)
 
     for _ in range(10):
-        print(augmented_simulator.step(np.random.choice([-1, 1])))
+        wave_world.step(0, verbose=True)
 
 
 if __name__ == "__main__":
